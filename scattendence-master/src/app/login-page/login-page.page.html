@@ -1,0 +1,105 @@
+<ion-content>
+  <ion-grid class="grid1">
+    <ion-row class="row1">
+      <ion-col class="img-container">
+        <img
+          src="../../assets/abcd.png"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row2">
+      <ion-col> </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slide>
+    <form
+      [formGroup]="validationFormUser"
+      (ngSubmit)="loginUser(validationFormUser)"
+    >
+      <div class="contaier-login">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h1>Welcome!</h1>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-icon name="person" class="icon-login"></ion-icon>
+                  <ion-input
+                    name="email"
+                    type="text"
+                    formControlName="email"
+                    placeholder="Login ID"
+                  ></ion-input>
+                </ion-item>
+                <div>
+                  <ng-container
+                    *ngFor="let validation of validationUserMessage.email"
+                  >
+                    <div
+                      class="error_message"
+                      *ngIf="
+                        validationFormUser
+                          .get('email')
+                          .hasError(validation.type) &&
+                        (validationFormUser.get('email').dirty ||
+                          validationFormUser.get('email').touched)
+                      "
+                    >
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+                <br />
+                <ion-item>
+                  <ion-icon name="lock-closed"></ion-icon>
+                  <ion-input
+                    name="password"
+                    type="password"
+                    formControlName="password"
+                    placeholder="Password"
+                  ></ion-input>
+                </ion-item>
+                <div>
+                  <ng-container
+                    *ngFor="let validation of validationUserMessage.password"
+                  >
+                    <div
+                      class="error_message"
+                      *ngIf="
+                        validationFormUser
+                          .get('password')
+                          .hasError(validation.type) &&
+                        (validationFormUser.get('password').dirty ||
+                          validationFormUser.get('password').touched)
+                      "
+                    >
+                      {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                type="submit"
+                fill="solid"
+                expand="full"
+                [disabled]="!validationFormUser.valid"
+              >
+                Enter
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </form>
+  </ion-slide>
+</ion-content>

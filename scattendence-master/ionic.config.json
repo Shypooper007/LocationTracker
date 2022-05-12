@@ -1,0 +1,7 @@
+{
+  "name": "Scattendance",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
